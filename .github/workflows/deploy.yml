@@ -11,6 +11,7 @@ jobs:
       - uses: withastro/action@main
         with:
           node-version: latest
+          package-manager: pnpm@latest
   deploy:
     needs: build
     runs-on: ubuntu-latest
