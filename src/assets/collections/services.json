@@ -1,0 +1,29 @@
+[
+  {
+    "id": 1,
+    "title": "Test",
+    "price": 100,
+    "description": "Test",
+    "benefits": [
+      "Test"
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Test",
+    "price": 100,
+    "description": "Test",
+    "benefits": [
+      "Test"
+    ]
+  },
+  {
+    "id": 3,
+    "title": "Test",
+    "price": 100,
+    "description": "Test",
+    "benefits": [
+      "Test"
+    ]
+  }
+]
