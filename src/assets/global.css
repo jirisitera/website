@@ -1,0 +1,12 @@
+@import "tailwindcss";
+
+:root {
+  background-color: #3f3f3f;
+  color-scheme: dark;
+  scroll-behavior: smooth;
+}
+
+.swiper {
+  width: 600px;
+  height: 300px;
+}
