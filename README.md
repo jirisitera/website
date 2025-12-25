@@ -1,5 +1,10 @@
 # My Personal Website (JapiWeb)
 
+![github](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/available/github_vector.svg)
+![website](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/documentation/website_vector.svg)
+
+[![.github/workflows/pack.yml](https://github.com/jirisitera/website/actions/workflows/deploy.yml/badge.svg)](https://github.com/jirisitera/website/actions/workflows/deploy.yml)
+
 A modern website for my personal projects and interests. Made with Astro, Tailwind, and love sprinkled on top. Hosted on GitHub Pages.
 
 > [!NOTE]
