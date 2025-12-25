@@ -1,4 +1,6 @@
 .astro/
+.DS_Store
+.idea/
 dist/
 node_modules/
 pnpm-lock.yaml
