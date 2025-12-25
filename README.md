@@ -25,5 +25,6 @@ This will start a local development server on `http://localhost:4321` (unless th
 ## Workflow Pipeline
 
 This project uses GitHub Actions for continuous integration and deployment. The used workflow is defined in the [deploy.yml](.github/workflows/deploy.yml) file.
+
 > [!NOTE]
 > The deployment workflow runs on the push and pull_request events, and uses the newest experimental versions of all actions. This may not be desirable for everyone.

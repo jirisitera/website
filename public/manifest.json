@@ -1,20 +1,20 @@
 {
-    "lang": "en",
-    "name": "JapiWeb",
-    "description": "Japi's personal website.",
-    "short_name": "japiweb",
-    "theme_color": "#5f4338",
-    "icons": [
-        {
-            "src": "/300.png",
-            "sizes": "300x300",
-            "type": "image/png"
-        },
-        {
-            "src": "/300.png",
-            "sizes": "300x300",
-            "type": "image/png",
-            "purpose": "maskable"
-        }
-    ]
+  "lang": "en",
+  "name": "JapiWeb",
+  "description": "Japi's personal website.",
+  "short_name": "japiweb",
+  "theme_color": "#5f4338",
+  "icons": [
+    {
+      "src": "/logo.png",
+      "sizes": "300x300",
+      "type": "image/png"
+    },
+    {
+      "src": "/logo.png",
+      "sizes": "300x300",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
 }
