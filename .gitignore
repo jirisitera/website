@@ -1,5 +1,6 @@
 .astro/
 .DS_Store
+.env
 .idea/
 dist/
 node_modules/
