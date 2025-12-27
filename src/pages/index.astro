@@ -1,14 +1,22 @@
 ---
 import Base from "../components/Base.astro";
-import Landing from "../components/Landing.astro";
-import Navigation from "../components/Navigation.astro";
+import Main from "../components/Main.astro";
 ---
 
 <html lang="en">
   <Base />
-  <body>
-    <Landing />
-  </body><nav>
-    <Navigation />
-  </nav>
+  <body
+    class="inset-0 z-0 bg-black"
+    style={{
+      background: "#020617",
+      backgroundImage: `
+        linear-gradient(to right, rgba(71,85,105,0.3) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(71,85,105,0.3) 1px, transparent 1px),
+        radial-gradient(circle at 50% 50%, rgba(139,92,246,0.15) 0%, transparent 70%)
+      `,
+      backgroundSize: "32px 32px, 32px 32px, 100% 100%",
+    }}
+  >
+    <Main />
+  </body>
 </html>
