@@ -3,12 +3,12 @@
 ![github](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/available/github_vector.svg)
 ![website](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/documentation/website_vector.svg)
 
-[![.github/workflows/pack.yml](https://github.com/jirisitera/website/actions/workflows/deploy.yml/badge.svg)](https://github.com/jirisitera/website/actions/workflows/deploy.yml)
+[![.github/workflows/pack.yml](https://img.shields.io/github/actions/workflow/status/jirisitera/website/deploy.yml?style=for-the-badge&logo=github)](https://github.com/jirisitera/website/actions/workflows/deploy.yml)
 
-A modern website for my personal projects and interests. Made with Astro, Tailwind, and love sprinkled on top. Hosted on GitHub Pages.
+A modern website for my personal projects and interests. Made with Astro, Tailwind, and love sprinkled on top.
 
 > [!NOTE]
-> This is a purely static website. Everything is compiled into simple HTML, CSS, and JavaScript files for easy hosting and portability.
+> This is a purely static website. Everything is compiled into static files for easy hosting and portability.
 
 ## License & Usage
 
@@ -27,9 +27,11 @@ pnpm dev
 
 This will start a local development server on `http://localhost:4321` (unless the port is already occupied). You can then check it out in your web browser. You can stop the server at any time by pressing `Ctrl + C` in the terminal.
 
-## Workflow Pipeline
+## Hosting & Deployment
 
-This project uses GitHub Actions for continuous integration and deployment. The used workflow is defined in the [deploy.yml](.github/workflows/deploy.yml) file.
+This project uses GitHub Actions for continuous deployment to GitHub Pages.
+
+The used workflow is defined in the [deploy.yml](.github/workflows/deploy.yml) workflow file.
 
 > [!NOTE]
-> The deployment workflow runs on the push and pull_request events, and uses the newest experimental versions of all actions. This may not be desirable for everyone.
+> The deployment workflow runs on the 'push' and 'pull_request' events, and uses the newest experimental versions of all actions and dependencies. This may not be desirable for everyone, as it could become unstable over time without maintenance.
