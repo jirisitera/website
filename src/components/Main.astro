@@ -1,6 +1,8 @@
 ---
 import { Image } from "astro:assets";
 import logo from "../assets/logo.png";
+import Skill from "./Skill.astro";
+import skills from "../data/skills.json";
 ---
 
 <section class="mx-auto mt-10 mb-20 max-w-xs transition md:max-w-xl xl:max-w-4xl">
@@ -33,17 +35,7 @@ import logo from "../assets/logo.png";
     </div>
   </a>
   <div class="mt-10 text-center text-4xl font-bold">Skills</div>
-  <div class="mt-10 rounded-lg bg-gray-400/50 p-8 transition hover:scale-105 hover:bg-gray-200/50">Java - 5+ years of experience</div>
-  <div class="mt-10 rounded-lg bg-gray-400/50 p-8 transition hover:scale-105 hover:bg-gray-200/50">
-    Git - 5+ years of experience (as well as GitHub & GitLab workflows)
-  </div>
-  <div class="mt-10 rounded-lg bg-gray-400/50 p-8 transition hover:scale-105 hover:bg-gray-200/50">
-    Web Development - 2+ years of experience (HTML, CSS/Tailwind, JavaScript/TypeScript, Astro)
-  </div>
-  <div class="mt-10 rounded-lg bg-gray-400/50 p-8 transition hover:scale-105 hover:bg-gray-200/50">
-    C++ & Pure C - 2+ years of experience
-  </div>
-  <div class="mt-10 rounded-lg bg-gray-400/50 p-8 transition hover:scale-105 hover:bg-gray-200/50">Python - 3+ years of experience</div>
+  <div>{skills.map((item: { content: unknown }) => <Skill content={item.content} />)}</div>
   <div class="mt-10 text-center text-4xl font-bold">Contact</div>
   <a href="mailto:contact@japicraft.com" target="_blank" rel="noreferrer nofollow">
     <div class="mt-10 rounded-lg bg-gray-400/50 p-8 transition hover:scale-105 hover:bg-gray-200/50">E-mail: contact@japicraft.com</div>
