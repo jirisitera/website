@@ -13,7 +13,7 @@
     "@astrojs/sitemap": "3.7.0",
     "@fontsource/figtree": "5.2.10",
     "@tailwindcss/vite": "4.2.1",
-    "astro": "5.18.0",
+    "astro": "5.18.1",
     "sharp": "0.34.5",
     "tailwindcss": "4.2.1"
   },
