@@ -1,0 +1,12 @@
+[
+  {
+    "href": "/sha1",
+    "name": "SHA1 Generator",
+    "description": "Generate SHA1 hashes for files or URLs."
+  },
+  {
+    "href": "/uuid",
+    "name": "UUID Generator",
+    "description": "Generate random v4 UUIDs instantly."
+  }
+]

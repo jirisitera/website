@@ -3,8 +3,12 @@ import { Image } from "astro:assets";
 import logo from "../assets/logo.png";
 import Skill from "./Skill.astro";
 import Project from "./Project.astro";
+import Tool from "./Tool.astro";
+import Contact from "./Contact.astro";
 import skills from "../data/skills.json";
 import projects from "../data/projects.json";
+import tools from "../data/tools.json";
+import contacts from "../data/contacts.json";
 ---
 
 <section class="mx-auto mt-10 mb-16 w-full max-w-none px-6 transition lg:max-w-5xl">
@@ -47,48 +51,30 @@ import projects from "../data/projects.json";
       {skills.map((item: { name: string; experience: string; details: string }) => <Skill {...item} />)}
     </div>
   </div>
+  <div class="section-shell section-projects mb-12">
+    <div class="section-kicker">TOOLBOX</div>
+    <h2 class="section-title mb-2 text-center text-3xl font-semibold lg:text-4xl">Tools</h2>
+    <p class="section-subtitle mx-auto mb-5 max-w-2xl text-center text-sm">A few of my tools available right on this site.</p>
+    <div class="accent-line mx-auto mb-8"></div>
+    <div class="grid gap-4">
+      {
+        tools.map((item: { href: string; name: string; description: string }) => (
+          <Tool href={item.href} name={item.name} description={item.description} />
+        ))
+      }
+    </div>
+  </div>
   <div class="section-shell section-contact mb-12">
     <div class="section-kicker">REACH OUT</div>
     <h2 class="section-title mb-2 text-center text-3xl font-semibold lg:text-4xl">Contact</h2>
     <p class="section-subtitle mx-auto mb-5 max-w-2xl text-center text-sm">Feel free to reach out, I'm always open to new things.</p>
     <div class="accent-line mx-auto mb-8"></div>
-    <div class="contact-card glass glass-hover group mt-6 rounded-2xl">
-      <div class="contact-card__layout">
-        <a class="flex items-center gap-3" href="https://mailto.japicraft.com" rel="noreferrer nofollow">
-          <span class="rounded-full border border-sky-300/40 bg-sky-400/10 px-2 py-1 text-xs text-sky-200">@</span>
-          <div>
-            <div class="text-lg font-semibold text-slate-100">E-mail</div>
-            <p class="text-sm text-slate-300 transition group-hover:text-slate-100">contact@japicraft.com</p>
-          </div>
-        </a>
-        <button
-          type="button"
-          class="copy-button touch-target rounded-full border border-white/15 bg-white/8 px-3 py-1.5 text-xs font-medium text-slate-100 transition hover:border-sky-300/50 hover:bg-sky-400/10"
-          data-copy-target="contact@japicraft.com"
-          aria-label="Copy email address to clipboard"
-        >
-          Copy
-        </button>
-      </div>
-    </div>
-    <div class="contact-card glass glass-hover group mt-6 mb-1 rounded-2xl">
-      <div class="contact-card__layout">
-        <a class="flex items-center gap-3" href="https://github.japicraft.com" target="_blank" rel="noreferrer nofollow">
-          <span class="rounded-full border border-sky-300/40 bg-sky-400/10 px-2 py-1 text-xs text-sky-200">GH</span>
-          <div>
-            <div class="text-lg font-semibold text-slate-100">GitHub</div>
-            <p class="text-sm text-slate-300 transition group-hover:text-slate-100">github.japicraft.com</p>
-          </div>
-        </a>
-        <button
-          type="button"
-          class="copy-button touch-target rounded-full border border-white/15 bg-white/8 px-3 py-1.5 text-xs font-medium text-slate-100 transition hover:border-sky-300/50 hover:bg-sky-400/10"
-          data-copy-target="https://github.japicraft.com"
-          aria-label="Copy GitHub profile link to clipboard"
-        >
-          Copy
-        </button>
-      </div>
+    <div class="grid gap-4">
+      {
+        contacts.map((item: { icon: string; label: string; contact: string; href: string; target: string; rel: string }) => (
+          <Contact icon={item.icon} label={item.label} contact={item.contact} href={item.href} target={item.target} rel={item.rel} />
+        ))
+      }
     </div>
   </div>
   <div class="section-shell section-note text-center text-slate-300">

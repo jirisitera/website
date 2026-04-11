@@ -1,0 +1,18 @@
+[
+  {
+    "icon": "@",
+    "label": "E-mail",
+    "contact": "contact@japicraft.com",
+    "href": "https://mailto.japicraft.com",
+    "target": "",
+    "rel": "noreferrer nofollow"
+  },
+  {
+    "icon": "GH",
+    "label": "GitHub",
+    "contact": "github.japicraft.com",
+    "href": "https://github.japicraft.com",
+    "target": "_blank",
+    "rel": "noreferrer nofollow"
+  }
+]

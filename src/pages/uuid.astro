@@ -1,0 +1,136 @@
+---
+import Base from "../components/Base.astro";
+---
+
+<html lang="en">
+  <Base
+    title="UUID Generator | JapiWeb"
+    description="Generate random UUIDs in your browser for quick copy-and-use workflows."
+    color="#214f61"
+  />
+  <body
+    class="relative inset-0 z-0 min-h-screen overflow-x-hidden"
+    style={{
+      background: `
+        linear-gradient(150deg, #07131a 0%, #0c1f29 42%, #143245 100%),
+        radial-gradient(circle at 18% 18%, rgba(82, 198, 255, 0.2) 0%, transparent 40%),
+        radial-gradient(circle at 82% 78%, rgba(83, 255, 213, 0.12) 0%, transparent 40%)
+      `,
+      backgroundSize: "100% 100%, 100% 100%, 100% 100%",
+      backgroundAttachment: "fixed",
+    }}
+  >
+    <div class="pointer-events-none fixed inset-0">
+      <div class="ambient-float absolute top-0 left-1/5 h-96 w-96 rounded-full bg-sky-300/10 blur-3xl" style={{ animationDuration: "10s" }}>
+      </div>
+      <div
+        class="ambient-float absolute right-1/4 bottom-0 h-96 w-96 rounded-full bg-emerald-400/10 blur-3xl"
+        style={{ animationDuration: "12s", animationDelay: "1s" }}
+      >
+      </div>
+    </div>
+    <main class="relative z-10 mx-auto w-full max-w-3xl px-6 py-12">
+      <section class="section-shell section-hero mb-8">
+        <div class="section-kicker">UTILITY TOOL</div>
+        <h1 class="section-title mb-2 text-center text-3xl font-semibold lg:text-4xl">Random UUID Generator</h1>
+        <p class="section-subtitle mx-auto max-w-2xl text-center text-sm lg:text-base">
+          Generate version 4 UUIDs locally in your browser and copy them instantly.
+        </p>
+        <div class="accent-line mx-auto mt-5 mb-6"></div>
+
+        <div class="glass rounded-2xl p-6 text-center">
+          <div class="mb-2 text-xs tracking-[0.2em] text-sky-100/70 uppercase">Current UUID</div>
+          <output id="uuidOutput" class="block font-mono text-lg break-all text-sky-50 lg:text-2xl" aria-live="polite"> Loading... </output>
+        </div>
+      </section>
+      <section class="section-shell section-note">
+        <div class="grid gap-3 sm:grid-cols-2">
+          <button
+            id="generateBtn"
+            type="button"
+            class="touch-target rounded-full border border-white/20 bg-white/8 px-4 py-2 text-sm font-semibold tracking-wide text-sky-50 transition hover:border-sky-300/60 hover:bg-sky-300/10"
+          >
+            Generate UUID
+          </button>
+          <button
+            id="copyBtn"
+            type="button"
+            class="touch-target rounded-full border border-white/20 bg-white/8 px-4 py-2 text-sm font-semibold tracking-wide text-sky-50 transition hover:border-sky-300/60 hover:bg-sky-300/10"
+            disabled
+          >
+            Copy UUID
+          </button>
+        </div>
+        <p class="section-subtitle mt-4 text-center text-xs lg:text-sm">
+          Uses the browser's built-in cryptographic UUID generator when available.
+        </p>
+        <div class="mt-5 flex justify-center">
+          <a
+            href="/"
+            class="touch-target rounded-full border border-white/14 bg-black/15 px-4 py-2 text-xs font-semibold tracking-wide text-sky-50/95 transition hover:border-sky-300/50"
+          >
+            Back to Home
+          </a>
+        </div>
+      </section>
+    </main>
+    <script>
+      const uuidOutput = document.querySelector<HTMLOutputElement>("#uuidOutput");
+      const generateBtn = document.querySelector<HTMLButtonElement>("#generateBtn");
+      const copyBtn = document.querySelector<HTMLButtonElement>("#copyBtn");
+      function generateUuid(): string {
+        if (window.crypto?.randomUUID) {
+          return window.crypto.randomUUID();
+        }
+        throw new Error("Web Crypto UUID support unavailable");
+      }
+      function setUuid(uuid: string): void {
+        if (!uuidOutput || !copyBtn) {
+          return;
+        }
+        uuidOutput.textContent = uuid;
+        copyBtn.disabled = false;
+        copyBtn.setAttribute("data-uuid", uuid);
+      }
+      function setUnavailable(message: string): void {
+        if (!uuidOutput || !copyBtn) {
+          return;
+        }
+        uuidOutput.textContent = message;
+        copyBtn.disabled = true;
+        copyBtn.removeAttribute("data-uuid");
+      }
+      generateBtn?.addEventListener("click", () => {
+        try {
+          setUuid(generateUuid());
+        } catch {
+          setUnavailable("UUID generation is unavailable in this browser.");
+        }
+      });
+      copyBtn?.addEventListener("click", async () => {
+        const uuid = copyBtn.getAttribute("data-uuid");
+        if (!uuid) {
+          return;
+        }
+        try {
+          await navigator.clipboard.writeText(uuid);
+          const previousLabel = copyBtn.textContent;
+          copyBtn.textContent = "Copied";
+          window.setTimeout(() => {
+            copyBtn.textContent = previousLabel;
+          }, 1300);
+        } catch {
+          copyBtn.textContent = "Clipboard blocked";
+          window.setTimeout(() => {
+            copyBtn.textContent = "Copy UUID";
+          }, 1300);
+        }
+      });
+      try {
+        setUuid(generateUuid());
+      } catch {
+        setUnavailable("UUID generation is unavailable in this browser.");
+      }
+    </script>
+  </body>
+</html>

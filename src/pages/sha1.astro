@@ -1,0 +1,254 @@
+---
+import Base from "../components/Base.astro";
+---
+
+<html lang="en">
+  <Base
+    title="SHA1 Generator | JapiWeb"
+    description="Generate SHA1 hashes for Minecraft resource pack files directly in your browser."
+    color="#2f5d4b"
+  />
+  <body
+    class="relative inset-0 z-0 min-h-screen overflow-x-hidden"
+    style={{
+      background: `
+        linear-gradient(150deg, #081511 0%, #0d2219 42%, #133125 100%),
+        radial-gradient(circle at 16% 18%, rgba(86, 245, 176, 0.2) 0%, transparent 40%),
+        radial-gradient(circle at 84% 78%, rgba(122, 255, 214, 0.12) 0%, transparent 40%)
+      `,
+      backgroundSize: "100% 100%, 100% 100%, 100% 100%",
+      backgroundAttachment: "fixed",
+    }}
+  >
+    <div class="pointer-events-none fixed inset-0">
+      <div
+        class="ambient-float absolute top-0 left-1/4 h-96 w-96 rounded-full bg-emerald-300/10 blur-3xl"
+        style={{ animationDuration: "9s" }}
+      >
+      </div>
+      <div
+        class="ambient-float absolute right-1/4 bottom-0 h-96 w-96 rounded-full bg-teal-500/10 blur-3xl"
+        style={{ animationDuration: "11s", animationDelay: "1s" }}
+      >
+      </div>
+    </div>
+    <main class="relative z-10 mx-auto w-full max-w-3xl px-6 py-12">
+      <section class="section-shell section-projects mb-8">
+        <div class="section-kicker">RESOURCE PACK TOOL</div>
+        <h1 class="section-title mb-2 text-center text-3xl font-semibold lg:text-4xl">Minecraft SHA1 Generator</h1>
+        <p class="section-subtitle mx-auto max-w-2xl text-center text-sm lg:text-base">
+          Upload your pack file or hash a direct URL to get a SHA1 for distribution metadata and integrity checks.
+        </p>
+        <div class="accent-line mx-auto mt-5 mb-6"></div>
+
+        <div id="dropzone" class="glass rounded-2xl border border-dashed border-emerald-200/30 p-6 text-center transition">
+          <p class="mb-3 text-lg font-semibold text-emerald-50">Drop your .zip file here</p>
+          <p class="mb-5 text-sm text-emerald-100/80">or choose a file manually</p>
+          <label
+            class="inline-flex cursor-pointer items-center justify-center rounded-full border border-white/20 bg-white/8 px-4 py-2 text-sm font-medium text-emerald-50 transition hover:border-emerald-300/60 hover:bg-emerald-300/10"
+          >
+            Choose File
+            <input id="fileInput" class="sr-only" type="file" />
+          </label>
+          <p id="fileMeta" class="mt-4 text-xs text-emerald-100/75">No file selected</p>
+        </div>
+        <div class="mt-5 rounded-2xl border border-white/10 bg-black/10 p-5 text-left">
+          <label for="urlInput" class="mb-2 block text-sm font-semibold text-emerald-50">Or hash a URL</label>
+          <div class="flex flex-col gap-3 lg:flex-row">
+            <input
+              id="urlInput"
+              type="url"
+              placeholder="https://example.com/resourcepack.zip"
+              class="touch-target w-full rounded-full border border-white/15 bg-white/8 px-4 py-2 text-sm text-emerald-50 transition outline-none placeholder:text-emerald-100/40 focus:border-emerald-300/60"
+            />
+            <button
+              id="urlBtn"
+              type="button"
+              class="touch-target rounded-full border border-white/20 bg-white/8 px-4 py-2 text-sm font-semibold tracking-wide text-emerald-50 transition hover:border-emerald-300/60 hover:bg-emerald-300/10"
+            >
+              Hash URL
+            </button>
+          </div>
+          <p class="mt-3 text-xs text-emerald-100/70">
+            The URL must allow browser access through CORS, or the request will be blocked by the browser.
+          </p>
+        </div>
+      </section>
+      <section class="section-shell section-note">
+        <h2 class="section-title mb-3 text-center text-xl font-semibold">SHA1 Result</h2>
+        <div class="glass-sm rounded-2xl p-4">
+          <output id="hashOutput" class="block text-center font-mono text-sm break-all text-emerald-100/90" aria-live="polite">
+            Waiting for file...
+          </output>
+        </div>
+        <div class="mt-4 flex flex-wrap items-center justify-center gap-3">
+          <button
+            id="copyBtn"
+            type="button"
+            class="touch-target rounded-full border border-white/20 bg-white/8 px-4 py-2 text-xs font-semibold tracking-wide text-emerald-50 transition hover:border-emerald-300/60 hover:bg-emerald-300/10"
+            disabled
+          >
+            Copy Hash
+          </button>
+          <a
+            href="/"
+            class="touch-target rounded-full border border-white/14 bg-black/15 px-4 py-2 text-xs font-semibold tracking-wide text-emerald-50/95 transition hover:border-emerald-300/50"
+          >
+            Back to Home
+          </a>
+        </div>
+      </section>
+    </main>
+    <script>
+      const fileInput = document.querySelector<HTMLInputElement>("#fileInput");
+      const dropzone = document.querySelector<HTMLElement>("#dropzone");
+      const fileMeta = document.querySelector<HTMLElement>("#fileMeta");
+      const hashOutput = document.querySelector<HTMLOutputElement>("#hashOutput");
+      const copyBtn = document.querySelector<HTMLButtonElement>("#copyBtn");
+      const urlInput = document.querySelector<HTMLInputElement>("#urlInput");
+      const urlBtn = document.querySelector<HTMLButtonElement>("#urlBtn");
+      function formatBytes(size: number): string {
+        if (size < 1024) return `${size} B`;
+        if (size < 1024 * 1024) return `${(size / 1024).toFixed(1)} KB`;
+        return `${(size / (1024 * 1024)).toFixed(2)} MB`;
+      }
+      function toHex(buffer: ArrayBuffer): string {
+        const bytes = new Uint8Array(buffer);
+        return Array.from(bytes)
+          .map((b) => b.toString(16).padStart(2, "0"))
+          .join("");
+      }
+      async function generateSha1FromBuffer(buffer: ArrayBuffer): Promise<string> {
+        if (!(window.crypto && window.crypto.subtle)) {
+          throw new Error("Web Crypto API unavailable");
+        }
+        const digest = await window.crypto.subtle.digest("SHA-1", buffer);
+        return toHex(digest);
+      }
+      function clearHashState(): void {
+        if (!copyBtn) {
+          return;
+        }
+        copyBtn.disabled = true;
+        copyBtn.removeAttribute("data-hash");
+      }
+      function setHashState(hash: string, sourceLabel: string): void {
+        if (!fileMeta || !hashOutput || !copyBtn) {
+          return;
+        }
+        fileMeta.textContent = sourceLabel;
+        hashOutput.textContent = hash;
+        copyBtn.disabled = false;
+        copyBtn.setAttribute("data-hash", hash);
+      }
+      function setHashError(message: string): void {
+        if (!hashOutput || !copyBtn) {
+          return;
+        }
+        hashOutput.textContent = message;
+        clearHashState();
+      }
+      async function handleFile(file: File | null | undefined): Promise<void> {
+        if (!file || !fileMeta || !hashOutput || !copyBtn) {
+          return;
+        }
+        fileMeta.textContent = `${file.name} - ${formatBytes(file.size)}`;
+        hashOutput.textContent = "Hashing file...";
+        clearHashState();
+        try {
+          const data = await file.arrayBuffer();
+          const hash = await generateSha1FromBuffer(data);
+          setHashState(hash, `${file.name} - ${formatBytes(file.size)}`);
+        } catch {
+          setHashError("Could not generate SHA1 hash in this browser.");
+        }
+      }
+      async function handleUrl(): Promise<void> {
+        if (!urlInput || !fileMeta || !hashOutput || !copyBtn) {
+          return;
+        }
+        const rawUrl = urlInput.value.trim();
+        if (!rawUrl) {
+          setHashError("Enter a URL to generate a SHA1 hash.");
+          return;
+        }
+        let parsedUrl: URL;
+        try {
+          parsedUrl = new URL(rawUrl, window.location.href);
+        } catch {
+          setHashError("That URL is not valid.");
+          return;
+        }
+        fileMeta.textContent = `URL: ${parsedUrl.toString()}`;
+        hashOutput.textContent = "Fetching and hashing URL...";
+        clearHashState();
+        try {
+          const response = await fetch(parsedUrl.toString(), { cache: "no-store" });
+          if (!response.ok) {
+            throw new Error(`Request failed with status ${response.status}`);
+          }
+
+          const data = await response.arrayBuffer();
+          const hash = await generateSha1FromBuffer(data);
+          setHashState(hash, `URL: ${parsedUrl.toString()}`);
+        } catch {
+          setHashError("Could not fetch or hash that URL. Check the URL and its CORS policy.");
+        }
+      }
+      fileInput?.addEventListener("change", (event) => {
+        const input = event.currentTarget;
+        if (!(input instanceof HTMLInputElement)) {
+          return;
+        }
+        handleFile(input.files?.[0]);
+        urlBtn?.addEventListener("click", () => {
+          void handleUrl();
+        });
+        urlInput?.addEventListener("keydown", (event) => {
+          if (event.key === "Enter") {
+            event.preventDefault();
+            void handleUrl();
+          }
+        });
+      });
+      ["dragenter", "dragover"].forEach((eventName) => {
+        dropzone?.addEventListener(eventName, (event) => {
+          event.preventDefault();
+          dropzone.classList.add("border-emerald-200/70", "bg-emerald-300/10");
+        });
+      });
+      ["dragleave", "drop"].forEach((eventName) => {
+        dropzone?.addEventListener(eventName, (event) => {
+          event.preventDefault();
+          dropzone.classList.remove("border-emerald-200/70", "bg-emerald-300/10");
+        });
+      });
+      dropzone?.addEventListener("drop", (event) => {
+        if (!(event instanceof DragEvent)) {
+          return;
+        }
+        const file = event.dataTransfer?.files?.[0];
+        handleFile(file);
+      });
+      copyBtn?.addEventListener("click", async () => {
+        const hash = copyBtn.getAttribute("data-hash");
+        if (!hash) {
+          return;
+        }
+        try {
+          await navigator.clipboard.writeText(hash);
+          const prev = copyBtn.textContent;
+          copyBtn.textContent = "Copied";
+          window.setTimeout(() => {
+            copyBtn.textContent = prev;
+          }, 1300);
+        } catch {
+          copyBtn.textContent = "Clipboard blocked";
+          window.setTimeout(() => {
+            copyBtn.textContent = "Copy Hash";
+          }, 1300);
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -219,7 +219,13 @@
   padding: 1rem;
 }
 .touch-target {
+  align-items: center;
+  display: inline-flex;
+  justify-content: center;
   min-height: 2.75rem;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
 }
 @media (min-width: 1024px) {
   .contact-card {

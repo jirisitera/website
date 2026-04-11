@@ -1,9 +1,12 @@
 ---
 import "../assets/global.css";
+interface Props {
+  title?: string;
+  description?: string;
+  color?: string;
+}
+const { title = "Home | JapiWeb", description = "Japi's personal website.", color = "#5f4338" } = Astro.props as Props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-const title = "Home | JapiWeb";
-const description = "Japi's personal website.";
-const color = "#5f4338";
 ---
 
 <head>
