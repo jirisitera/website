@@ -8,5 +8,10 @@
     "href": "/uuid",
     "name": "UUID Generator",
     "description": "Generate random v4 UUIDs instantly."
+  },
+  {
+    "href": "/server",
+    "name": "Minecraft Server Checker",
+    "description": "Check if a Minecraft server is online and view basic info."
   }
 ]
