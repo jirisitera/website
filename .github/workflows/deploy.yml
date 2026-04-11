@@ -1,4 +1,6 @@
 on: [push, workflow_dispatch]
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 permissions:
   contents: read
   pages: write
@@ -20,4 +22,4 @@ jobs:
       url: ${{steps.deployment.outputs.page_url}}
     steps:
       - id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
