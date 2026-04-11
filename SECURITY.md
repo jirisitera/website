@@ -2,7 +2,7 @@
 
 ## Reporting Vulnerabilities & Security Issues
 
-You can securely report any vulnerabilities to my contact E-mail: [contact@japicraft.com](mailto.japicraft.com)
+You can securely report any vulnerabilities to my contact E-mail: [contact@japicraft.com](https://mailto.japicraft.com)
 
 ## Preferred Languages
 
