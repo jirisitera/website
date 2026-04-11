@@ -1,17 +1,27 @@
 [
   {
-    "content": "Java - 5+ years of experience"
+    "name": "Java",
+    "experience": "5+ years",
+    "details": "Gradle & Maven, Minecraft mods and plugins, a bit of Android app development and Kotlin."
   },
   {
-    "content": "Git - 5+ years of experience (as well as GitHub & GitLab workflows)"
+    "name": "Git",
+    "experience": "5+ years",
+    "details": "Advanced CLI and web usage with GitHub and GitLab, as well as complex GitHub workflows."
   },
   {
-    "content": "Web Development - 2+ years of experience (HTML, CSS/Tailwind, JavaScript/TypeScript, Astro)"
+    "name": "Web Development",
+    "experience": "2+ years",
+    "details": "HTML, CSS/Tailwind, JavaScript/TypeScript and simple frameworks, such as Astro or Starlight."
   },
   {
-    "content": "C++ & Pure C - 2+ years of experience"
+    "name": "C++ & C",
+    "experience": "2+ years",
+    "details": "Arduino & ESP projects, Minecraft shaders, standalone programs and Windows app development."
   },
   {
-    "content": "Python - 3+ years of experience"
+    "name": "Python",
+    "experience": "2+ years",
+    "details": "Cross-platform utility scripts, simple standalone apps and some basic UI with Tkinter."
   }
 ]

@@ -6,17 +6,44 @@ import Main from "../components/Main.astro";
 <html lang="en">
   <Base />
   <body
-    class="inset-0 z-0 bg-black"
+    class="relative inset-0 z-0 min-h-screen overflow-x-hidden"
     style={{
-      background: "#020617",
-      backgroundImage: `
-        linear-gradient(to right, rgba(71,85,105,0.3) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(71,85,105,0.3) 1px, transparent 1px),
-        radial-gradient(circle at 50% 50%, rgba(139,92,246,0.15) 0%, transparent 70%)
+      background: `
+        linear-gradient(150deg, #0a0d13 0%, #101724 42%, #132133 100%),
+        radial-gradient(circle at 16% 18%, rgba(66, 153, 225, 0.22) 0%, transparent 38%),
+        radial-gradient(circle at 84% 78%, rgba(76, 194, 255, 0.16) 0%, transparent 40%)
       `,
-      backgroundSize: "32px 32px, 32px 32px, 100% 100%",
+      backgroundSize: "100% 100%, 100% 100%, 100% 100%",
+      backgroundAttachment: "fixed",
     }}
   >
-    <Main />
+    <div class="pointer-events-none fixed inset-0">
+      <div class="ambient-float absolute top-0 left-1/4 h-96 w-96 rounded-full bg-sky-400/10 blur-3xl" style={{ animationDuration: "9s" }}>
+      </div>
+      <div
+        class="ambient-float absolute right-1/4 bottom-0 h-96 w-96 rounded-full bg-blue-500/10 blur-3xl"
+        style={{ animationDuration: "11s", animationDelay: "1s" }}
+      >
+      </div>
+      <div
+        class="ambient-float absolute top-1/2 right-0 h-96 w-96 rounded-full bg-slate-300/10 blur-3xl"
+        style={{ animationDuration: "13s", animationDelay: "2s" }}
+      >
+      </div>
+    </div>
+    <div
+      class="pointer-events-none fixed inset-0 opacity-25"
+      style={{
+        backgroundImage: `
+        linear-gradient(to right, rgba(132, 146, 166, 0.18) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(132, 146, 166, 0.18) 1px, transparent 1px)
+      `,
+        backgroundSize: "34px 34px",
+      }}
+    >
+    </div>
+    <div class="relative z-10">
+      <Main />
+    </div>
   </body>
 </html>

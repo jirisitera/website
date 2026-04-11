@@ -10,12 +10,6 @@ A modern website for my personal projects and interests. Made with Astro, Tailwi
 > [!NOTE]
 > This is a purely static website. Everything is compiled into static files for easy hosting and portability.
 
-## License & Usage
-
-I'm not one for gatekeeping code, so feel free to use any part of this project for your own website or project.
-
-All of the code is open source under the [MIT License](LICENSE.txt).
-
 ## Getting Started
 
 To preview this website locally, make sure you have [Node.js](https://nodejs.org/) and [pnpm](https://pnpm.io/) installed, then run:
@@ -35,3 +29,9 @@ The used workflow is defined in the [deploy.yml](.github/workflows/deploy.yml) w
 
 > [!NOTE]
 > The deployment workflow runs on the 'push' and 'pull_request' events, and uses the newest experimental versions of all actions and dependencies. This may not be desirable for everyone, as it could become unstable over time without maintenance.
+
+## License & Usage
+
+I'm not one for gatekeeping code, so feel free to use any part of this project for your own website or project.
+
+All of the code is open source under the [MIT License](LICENSE.txt).

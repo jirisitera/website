@@ -1,8 +1,7 @@
 ---
 import "../assets/global.css";
-import "@fontsource/figtree";
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-const title = "JapiWeb";
+const title = "Home | JapiWeb";
 const description = "Japi's personal website.";
 const color = "#5f4338";
 ---
@@ -11,11 +10,18 @@ const color = "#5f4338";
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>{`${title}`}</title>
-  <link rel="icon" type="image/png" href="/logo.png" />
-  <link rel="manifest" href="/manifest.json" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  <link rel="manifest" href="/site.webmanifest" />
   <link rel="sitemap" href="/sitemap-index.xml" />
   <link rel="canonical" href={canonicalURL} />
   <meta name="generator" content={Astro.generator} />
+  <meta name="color-scheme" content="dark" />
+  <meta name="supported-color-schemes" content="dark" />
+  <meta name="darkreader-lock" />
   <meta name="title" content={`${title}`} />
   <meta name="description" content={`${description}`} />
   <meta name="theme-color" content={`${color}`} />
@@ -27,17 +33,11 @@ const color = "#5f4338";
   <meta property="twitter:title" content={`${title}`} />
   <meta property="twitter:description" content={`${description}`} />
 </head>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-D3EMH4MV42"></script>
-<script>
-  declare global {
-    interface Window {
-      dataLayer: unknown[];
-    }
-  }
-  export {};
+<script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-D3EMH4MV42"></script>
+<script is:inline>
   window.dataLayer = window.dataLayer || [];
-  function gtag(...args: unknown[]) {
-    window.dataLayer.push(args);
+  function gtag(...args) {
+    dataLayer.push(args);
   }
   gtag("js", new Date());
   gtag("config", "G-D3EMH4MV42");

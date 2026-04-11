@@ -1,0 +1,27 @@
+[
+  {
+    "url": "https://github.japicraft.com/ev3-iotcraft",
+    "name": "EV3 IoTcraft",
+    "description": "Connecting LEGO and IoTcraft."
+  },
+  {
+    "url": "https://github.japicraft.com/remotekeyboard",
+    "name": "Remote Keyboard",
+    "description": "A remotely controlled keyboard. MQTT compatible."
+  },
+  {
+    "url": "https://github.japicraft.com/djitellodrone",
+    "name": "DJI Tello Drone",
+    "description": "Control a drone from any computer."
+  },
+  {
+    "url": "https://github.japicraft.com/skinspice",
+    "name": "SkinSpice",
+    "description": "Spice up your Minecraft skin with more customization!"
+  },
+  {
+    "url": "https://github.japicraft.com/smooth-terrain-loading",
+    "name": "Smooth Terrain Loading",
+    "description": "Loads Minecraft terrain in a smooth way."
+  }
+]

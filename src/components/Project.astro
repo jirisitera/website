@@ -1,0 +1,10 @@
+---
+const { url, name, description } = Astro.props;
+---
+
+<a href={url} target="_blank" rel="noreferrer nofollow">
+  <div class="glass glass-hover group project-card mb-1 cursor-pointer rounded-2xl p-8">
+    <div class="mb-2 text-lg font-semibold text-slate-100">{name}</div>
+    <p class="text-sm text-slate-300 transition group-hover:text-slate-100">{description}</p>
+  </div>
+</a>

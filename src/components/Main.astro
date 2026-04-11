@@ -2,48 +2,125 @@
 import { Image } from "astro:assets";
 import logo from "../assets/logo.png";
 import Skill from "./Skill.astro";
+import Project from "./Project.astro";
 import skills from "../data/skills.json";
+import projects from "../data/projects.json";
 ---
 
-<section class="mx-auto mt-10 mb-20 max-w-xs transition md:max-w-xl xl:max-w-4xl">
-  <div class="mb-5 text-center text-2xl font-bold">japicraft.com</div>
-  <Image src={logo} alt="Logo" class="mx-auto rounded-full" loading="eager" />
-  <div class="mt-10 text-center text-4xl font-bold">Projects</div>
-  <a href="https://github.com/jirisitera/remotekeyboard" target="_blank" rel="noreferrer nofollow">
-    <div class="mt-10 rounded-lg bg-gray-400/50 p-8 transition hover:scale-105 hover:bg-gray-200/50">
-      Remote Keyboard - A remotely controlled keyboard. MQTT compatible.
+<section class="mx-auto mt-10 mb-16 w-full max-w-none px-6 transition lg:max-w-5xl">
+  <div class="section-shell section-hero mb-12">
+    <div class="grid gap-6 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-start">
+      <div>
+        <div class="section-kicker">JAPICRAFT.COM</div>
+        <div class="section-title mb-2 text-center text-3xl font-semibold lg:text-left lg:text-4xl">Always building something new.</div>
+        <p class="section-subtitle mx-auto mb-0 max-w-xl text-center text-sm lg:mx-0 lg:text-left lg:text-base">
+          Hi! I'm Japi, a developer and system engineer from the Czech Republic.
+        </p>
+      </div>
+      <Image
+        src={logo}
+        alt="Logo"
+        class="mx-auto h-20 w-20 rounded-full shadow-lg ring-1 ring-white/30 lg:mx-0 lg:h-24 lg:w-24 lg:justify-self-end"
+        loading="eager"
+      />
     </div>
-  </a>
-  <a href="https://github.com/jirisitera/djitellodrone" target="_blank" rel="noreferrer nofollow">
-    <div class="mt-10 rounded-lg bg-gray-400/50 p-8 transition hover:scale-105 hover:bg-gray-200/50">
-      DJI Tello Drone - Control a drone from any computer.
+  </div>
+  <div class="section-shell section-projects mb-12">
+    <div class="section-kicker">MY WORK</div>
+    <h2 class="section-title mb-2 text-center text-3xl font-semibold lg:text-4xl">Projects</h2>
+    <p class="section-subtitle mx-auto mb-5 max-w-2xl text-center text-sm">Cool projects I made during long, sleepless nights.</p>
+    <div class="accent-line mx-auto mb-8"></div>
+    <div class="grid gap-4">
+      {
+        projects.map((item: { url: string; name: string; description: string }) => (
+          <Project url={item.url} name={item.name} description={item.description} />
+        ))
+      }
     </div>
-  </a>
-  <a href="https://github.com/jirisitera/skinspice" target="_blank" rel="noreferrer nofollow">
-    <div class="mt-10 rounded-lg bg-gray-400/50 p-8 transition hover:scale-105 hover:bg-gray-200/50">
-      SkinSpice - Spice up your Minecraft skin with more customization!
+  </div>
+  <div class="section-shell section-skills mb-12">
+    <div class="section-kicker">SKILLBOOK</div>
+    <h2 class="section-title mb-2 text-center text-3xl font-semibold lg:text-4xl">Skills</h2>
+    <p class="section-subtitle mx-auto mb-5 max-w-2xl text-center text-sm">Some of the stuff I learned over the years.</p>
+    <div class="accent-line mx-auto mb-8"></div>
+    <div class="grid gap-4">
+      {skills.map((item: { name: string; experience: string; details: string }) => <Skill {...item} />)}
     </div>
-  </a>
-  <a href="https://github.com/jirisitera/smooth-terrain-loading" target="_blank" rel="noreferrer nofollow">
-    <div class="mt-10 rounded-lg bg-gray-400/50 p-8 transition hover:scale-105 hover:bg-gray-200/50">
-      Smooth Terrain Loading - Loads Minecraft terrain in a smooth way.
+  </div>
+  <div class="section-shell section-contact mb-12">
+    <div class="section-kicker">REACH OUT</div>
+    <h2 class="section-title mb-2 text-center text-3xl font-semibold lg:text-4xl">Contact</h2>
+    <p class="section-subtitle mx-auto mb-5 max-w-2xl text-center text-sm">Feel free to reach out, I'm always open to new things.</p>
+    <div class="accent-line mx-auto mb-8"></div>
+    <div class="contact-card glass glass-hover group mt-6 rounded-2xl">
+      <div class="contact-card__layout">
+        <a class="flex items-center gap-3" href="https://mailto.japicraft.com" rel="noreferrer nofollow">
+          <span class="rounded-full border border-sky-300/40 bg-sky-400/10 px-2 py-1 text-xs text-sky-200">@</span>
+          <div>
+            <div class="text-lg font-semibold text-slate-100">E-mail</div>
+            <p class="text-sm text-slate-300 transition group-hover:text-slate-100">contact@japicraft.com</p>
+          </div>
+        </a>
+        <button
+          type="button"
+          class="copy-button touch-target rounded-full border border-white/15 bg-white/8 px-3 py-1.5 text-xs font-medium text-slate-100 transition hover:border-sky-300/50 hover:bg-sky-400/10"
+          data-copy-target="contact@japicraft.com"
+          aria-label="Copy email address to clipboard"
+        >
+          Copy
+        </button>
+      </div>
     </div>
-  </a>
-  <a href="https://github.com/jirisitera/ev3-iotcraft" target="_blank" rel="noreferrer nofollow">
-    <div class="mt-10 rounded-lg bg-gray-400/50 p-8 transition hover:scale-105 hover:bg-gray-200/50">
-      EV3 IoTcraft - Connecting LEGO and IoTcraft.
+    <div class="contact-card glass glass-hover group mt-6 mb-1 rounded-2xl">
+      <div class="contact-card__layout">
+        <a class="flex items-center gap-3" href="https://github.japicraft.com" target="_blank" rel="noreferrer nofollow">
+          <span class="rounded-full border border-sky-300/40 bg-sky-400/10 px-2 py-1 text-xs text-sky-200">GH</span>
+          <div>
+            <div class="text-lg font-semibold text-slate-100">GitHub</div>
+            <p class="text-sm text-slate-300 transition group-hover:text-slate-100">github.japicraft.com</p>
+          </div>
+        </a>
+        <button
+          type="button"
+          class="copy-button touch-target rounded-full border border-white/15 bg-white/8 px-3 py-1.5 text-xs font-medium text-slate-100 transition hover:border-sky-300/50 hover:bg-sky-400/10"
+          data-copy-target="https://github.japicraft.com"
+          aria-label="Copy GitHub profile link to clipboard"
+        >
+          Copy
+        </button>
+      </div>
     </div>
-  </a>
-  <div class="mt-10 text-center text-4xl font-bold">Skills</div>
-  <div>{skills.map((item: { content: unknown }) => <Skill content={item.content} />)}</div>
-  <div class="mt-10 text-center text-4xl font-bold">Contact</div>
-  <a href="mailto:contact@japicraft.com" target="_blank" rel="noreferrer nofollow">
-    <div class="mt-10 rounded-lg bg-gray-400/50 p-8 transition hover:scale-105 hover:bg-gray-200/50">E-mail: contact@japicraft.com</div>
-  </a>
-  <a href="https://github.com/jirisitera" target="_blank" rel="noreferrer nofollow">
-    <div class="mt-10 rounded-lg bg-gray-400/50 p-8 transition hover:scale-105 hover:bg-gray-200/50">GitHub: github.com/jirisitera</div>
-  </a>
-  <div class="mt-20 text-center">
+  </div>
+  <div class="section-shell section-note text-center text-slate-300">
     Thanks for checking out my website! In case you need inspiration, this site is fully open sourced on my GitHub.
   </div>
 </section>
+<script>
+  const buttons = document.querySelectorAll("[data-copy-target]");
+  buttons.forEach((button) => {
+    button.addEventListener("click", async (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      const target = button.getAttribute("data-copy-target");
+      if (!target) {
+        return;
+      }
+      try {
+        await navigator.clipboard.writeText(target);
+      } catch {
+        button.textContent = "Unavailable";
+        window.setTimeout(() => {
+          button.textContent = "Copy";
+        }, 1400);
+        return;
+      }
+      const previousLabel = button.textContent;
+      button.textContent = "Copied";
+      button.setAttribute("aria-label", "Copied to clipboard");
+      window.setTimeout(() => {
+        button.textContent = previousLabel;
+        button.setAttribute("aria-label", "Copy to clipboard");
+      }, 1400);
+    });
+  });
+</script>
