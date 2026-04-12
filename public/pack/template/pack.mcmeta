@@ -1,0 +1,9 @@
+{
+  "pack": {
+    "description": [{ "text": "Template Resource Pack", "color": "#ffffff" }],
+    "pack_format": 46,
+    "min_format": 46,
+    "max_format": 84,
+    "supported_formats": [46, 84]
+  }
+}
