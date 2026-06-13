@@ -46,11 +46,6 @@
   .glass-sm {
     backdrop-filter: blur(20px) saturate(140%);
   }
-  .stacked-action {
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-  }
   .skill-card {
     padding: 1.5rem;
   }
@@ -205,11 +200,6 @@
 }
 .section-tools .accent-line {
   background: linear-gradient(90deg, rgba(255, 167, 190, 0.9), transparent);
-}
-.stacked-action {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
 }
 .contact-card {
   padding: 1rem;
