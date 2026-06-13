@@ -14,10 +14,14 @@ function Write-LauncherError {
     }
 }
 $rootDir = (Get-Location).Path
-$downloadDir = Join-Path $rootDir "client"
+$opencraftDir = Join-Path $rootDir "Opencraft"
+$downloadDir = Join-Path $opencraftDir "client"
 $zipPath = Join-Path $downloadDir "pmc-latest.zip"
 $extractDir = Join-Path $downloadDir ".extracted"
 $exePath = Join-Path $extractDir "portablemc.exe"
+if (-not (Test-Path -LiteralPath $opencraftDir -PathType Container)) {
+    New-Item -ItemType Directory -Path $opencraftDir -Force | Out-Null
+}
 if (-not (Test-Path -LiteralPath $downloadDir)) {
     New-Item -ItemType Directory -Path $downloadDir | Out-Null
 }
@@ -235,10 +239,14 @@ if ($pmcUser.Length -lt 3 -or $pmcUser.Length -gt 16 -or $pmcUser -notmatch "^[A
     Write-LauncherError -Message "Invalid username. Use 3 to 16 letters from the basic English alphabet only." -Exit
 }
 Write-LauncherStatus "Booting up Minecraft as user '$pmcUser'..."
+$mcDir = Join-Path $opencraftDir "game"
+if (-not (Test-Path -LiteralPath $mcDir -PathType Container)) {
+    New-Item -ItemType Directory -Path $mcDir -Force | Out-Null
+}
 $portableMcArguments = @(
     "start"
     "--mc-dir"
-    "game"
+    $mcDir
     "--disable-chat"
     "--username"
     $pmcUser
