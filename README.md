@@ -1,8 +1,5 @@
 # My Personal Website (JapiWeb)
 
-![github](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/available/github_vector.svg)
-![website](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/documentation/website_vector.svg)
-
 [![.github/workflows/pack.yml](https://img.shields.io/github/actions/workflow/status/jirisitera/website/deploy.yml?style=for-the-badge&logo=github)](https://github.com/jirisitera/website/actions/workflows/deploy.yml)
 
 A modern website for my personal projects and interests. Made with Astro, Tailwind, and love sprinkled on top.
@@ -26,9 +23,6 @@ This will start a local development server on `http://localhost:4321` (unless th
 This project uses GitHub Actions for continuous deployment to GitHub Pages.
 
 The used workflow is defined in the [deploy.yml](.github/workflows/deploy.yml) workflow file.
-
-> [!NOTE]
-> The deployment workflow runs on the 'push' and 'pull_request' events, and uses the newest experimental versions of all actions and dependencies. This may not be desirable for everyone, as it could become unstable over time without maintenance.
 
 ## License & Usage
 

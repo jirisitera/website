@@ -1,5 +1,4 @@
 .astro/
-.DS_Store
 .env
 .idea/
 dist/
