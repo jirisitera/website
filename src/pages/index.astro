@@ -1,49 +1,8 @@
 ---
-import Base from "../components/Base.astro";
-import Main from "../components/Main.astro";
+import Base from "../layouts/Base.astro";
+import Navbar from "../components/Navbar.astro";
 ---
 
-<html lang="en">
-  <Base />
-  <body
-    class="relative inset-0 z-0 min-h-screen overflow-x-hidden"
-    style={{
-      background: `
-        linear-gradient(150deg, #0a0d13 0%, #101724 42%, #132133 100%),
-        radial-gradient(circle at 16% 18%, rgba(66, 153, 225, 0.22) 0%, transparent 38%),
-        radial-gradient(circle at 84% 78%, rgba(76, 194, 255, 0.16) 0%, transparent 40%)
-      `,
-      backgroundSize: "100% 100%, 100% 100%, 100% 100%",
-      backgroundAttachment: "fixed",
-    }}
-  >
-    <div class="pointer-events-none fixed inset-0">
-      <div class="ambient-float absolute top-0 left-1/4 h-96 w-96 rounded-full bg-sky-400/10 blur-3xl" style={{ animationDuration: "9s" }}>
-      </div>
-      <div
-        class="ambient-float absolute right-1/4 bottom-0 h-96 w-96 rounded-full bg-blue-500/10 blur-3xl"
-        style={{ animationDuration: "11s", animationDelay: "1s" }}
-      >
-      </div>
-      <div
-        class="ambient-float absolute top-1/2 right-0 h-96 w-96 rounded-full bg-slate-300/10 blur-3xl"
-        style={{ animationDuration: "13s", animationDelay: "2s" }}
-      >
-      </div>
-    </div>
-    <div
-      class="pointer-events-none fixed inset-0 opacity-25"
-      style={{
-        backgroundImage: `
-        linear-gradient(to right, rgba(132, 146, 166, 0.18) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(132, 146, 166, 0.18) 1px, transparent 1px)
-      `,
-        backgroundSize: "34px 34px",
-      }}
-    >
-    </div>
-    <div class="relative z-10">
-      <Main />
-    </div>
-  </body>
-</html>
+<Base>
+  <Navbar />
+</Base>

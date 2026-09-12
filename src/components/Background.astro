@@ -1,0 +1,12 @@
+---
+const background_color = "#080808";
+---
+
+<div
+  id="background"
+  class="pointer-events-none fixed inset-0 min-h-screen overflow-x-hidden"
+  style={`background-color: ${background_color};`}
+>
+  <canvas id="canvas" class="block h-full w-full"></canvas>
+</div>
+<script src="../script/background.ts"></script>
