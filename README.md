@@ -1,6 +1,6 @@
 # My Personal Website (JapiWeb)
 
-[![.github/workflows/pack.yml](https://img.shields.io/github/actions/workflow/status/jirisitera/website/deploy.yml?style=for-the-badge&logo=github)](https://github.com/jirisitera/website/actions/workflows/deploy.yml)
+[![.github/workflows/deploy.yml](https://img.shields.io/github/actions/workflow/status/jirisitera/website/deploy.yml?style=for-the-badge&logo=github)](https://github.com/jirisitera/website/actions/workflows/deploy.yml)
 
 A modern website for my personal projects and interests. Made with Astro, Tailwind, and love sprinkled on top.
 
